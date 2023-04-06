@@ -1,0 +1,28 @@
+name: ECS_deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: Environment
+        required: true
+        options:
+          - app2
+          - test2
+
+#      version:
+#        description: 'Version'
+#        required: true
+#        default: 'v0.0.1'
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
